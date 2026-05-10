@@ -12,10 +12,6 @@ namespace Assets.Scripts.Visual.Animacoes.Personagens
 {
     public class AnimArqueiro : ControladorAnim
     {
-
-        [SerializeField] private Personagem personagem;       
-
-
         // ----------------  Métodos de acionamento ------------------
         public override void AnimacaoParado()
         {
@@ -80,10 +76,6 @@ namespace Assets.Scripts.Visual.Animacoes.Personagens
 
         // EVENTOS ESPECIFICOS DO ARQUEIRO!! --------------------------------------------------
         
-        public void EventoAtaque()//frame do ataque
-        {
-            personagem.AplicarGolpe();
-        }
 
     }
 }

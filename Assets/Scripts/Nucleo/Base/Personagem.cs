@@ -18,10 +18,9 @@ public abstract class Personagem : MonoBehaviour
     [SerializeField] private Transform pontoDoAtaque;
 
 
-    //variaveis objetos
-    [SerializeField] private GameObject ataque1;
-    [SerializeField] private GameObject ataque2;
-    [SerializeField] private GameObject ataque3;
+    //variaveis objetos    
+    [SerializeField] private GameObject []ataques;
+
 
     protected IComandosGerais controle;
 
@@ -59,7 +58,7 @@ public abstract class Personagem : MonoBehaviour
         controle = GetComponent<IComandosGerais>(); // procura componente que implementa IComandosGerais      
     }
 
-    //Métodos de correcao - Personagem]
+    //Métodos de correcao - Personagem
 
     //BoxCollider no sprite.flipX por frame --> chamar no método update
     public void CorrigirColliderFlip()
@@ -100,9 +99,11 @@ public abstract class Personagem : MonoBehaviour
     }
 
 
-    public void AplicarGolpe()
+    public void AplicarGolpe(int indice)
     {
-        GameObject atk = Instantiate(ataque1, pontoDoAtaque.position, pontoDoAtaque.rotation);
+        Physics2D.SyncTransforms(); // força a sincronização do rigidbody com o transform.
+
+        GameObject atk = Instantiate(ataques[indice], pontoDoAtaque.position, pontoDoAtaque.rotation);
         Vector3 scale = atk.transform.localScale;
 
         float direcao;

@@ -1070,8 +1070,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4713b63bb64ca9543b6c98f88400bb7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Visual.Animacoes.Personagens.AnimGuerreiro
-  animacaoTerminou: 0
   personagem: {fileID: 1289048060}
+  animacaoTerminou: 0
+  novoAtaque: 0
 --- !u!114 &1289048059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1098,9 +1099,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Personagens.Guerreiro.Guerreiro
   boxCollider: {fileID: 1289048062}
   pontoDoAtaque: {fileID: 82766153}
-  ataque1: {fileID: 5688417427016420097, guid: 4fcb48170241d0741bc4f3af258af404, type: 3}
-  ataque2: {fileID: 0}
-  ataque3: {fileID: 0}
+  ataques:
+  - {fileID: 5688417427016420097, guid: 4fcb48170241d0741bc4f3af258af404, type: 3}
+  - {fileID: 3127032226217516755, guid: 59db16ecd2f8bd744a1762c62b309494, type: 3}
+  - {fileID: 508356192094315985, guid: ac6566c8616753343aed663624fbc6b7, type: 3}
   cameraController: {fileID: 0}
 --- !u!61 &1289048062 stripped
 BoxCollider2D:
@@ -1389,9 +1391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Entidades.Arqueiro
   boxCollider: {fileID: 1580722398}
   pontoDoAtaque: {fileID: 2076201250}
-  ataque1: {fileID: 5688417427016420097, guid: 4fcb48170241d0741bc4f3af258af404, type: 3}
-  ataque2: {fileID: 0}
-  ataque3: {fileID: 0}
+  ataques: []
   cameraController: {fileID: 0}
 --- !u!114 &1580722387
 MonoBehaviour:
@@ -1417,8 +1417,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea49c9e3a0375b4993a6077a7c2d3f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Animacoes.AnimArqueiro
-  animacaoTerminou: 0
   personagem: {fileID: 1580722382}
+  animacaoTerminou: 0
+  novoAtaque: 0
 --- !u!95 &1580722396
 Animator:
   serializedVersion: 7

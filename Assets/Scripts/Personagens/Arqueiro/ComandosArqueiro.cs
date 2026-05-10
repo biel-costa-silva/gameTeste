@@ -13,10 +13,10 @@ namespace Assets.Scripts.Personagens.Arqueiro
             if (Input.GetKey(KeyCode.RightArrow)) return 1f;
             return 0f;
         }
-        public float ComandoAtaque()
+        public int ComandoAtaque()
         {
-            if(Input.GetKeyDown(KeyCode.Mouse0)) return 10f;
-            return 0f;
+            if(Input.GetKeyDown(KeyCode.Mouse0)) return 10;
+            return 0;
         }
        
         public bool ComandoInteracao()

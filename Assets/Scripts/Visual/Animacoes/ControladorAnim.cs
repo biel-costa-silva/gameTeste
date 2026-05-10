@@ -5,8 +5,14 @@ namespace Assets.Scripts.Visoes.Animacoes
 {
     abstract public class ControladorAnim : MonoBehaviour
     {
+        [SerializeField] private Personagem personagem;
         protected Animator animator;
+
+        //variaveis de controle
         public bool animacaoTerminou = false;
+        public bool novoAtaque = true;
+        public int indiceAtaque { get; set; }
+        public bool ComboRegistrado { get; set; }
         void Awake()
         {
             animator = GetComponent<Animator>();
@@ -36,14 +42,30 @@ namespace Assets.Scripts.Visoes.Animacoes
         public abstract void AnimacaoSofrendoAtqDesarm();
 
         //EVENTOS NO ANIMATION EVENTS
-        public void OnAnimacaoTerminou() // Animation Event no último frame
+        
+        // Animation Event no último frame
+        public void OnAnimacaoTerminou() 
         {
             animacaoTerminou = true;
         }
-        // importante -- resetar antes de cada animação
+
+        // Resetar antes de cada animação
         public void ResetarAnimacao()
         {
             animacaoTerminou = false;
+            novoAtaque = true;
+        }
+
+        //COMBOS!
+        public void JanelaNovoAtq()
+        {
+            novoAtaque = false;         
+        }
+
+        //Define ataque e spawna na cena
+        public void EventoAtaque()//frame do ataque
+        {
+            personagem.AplicarGolpe(indiceAtaque);
         }
 
     }

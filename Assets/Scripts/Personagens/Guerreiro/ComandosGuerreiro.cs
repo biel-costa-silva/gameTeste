@@ -14,9 +14,9 @@ namespace Assets.Scripts.Personagens.Guerreiro
             if (Input.GetKey(KeyCode.D)) return 1f;
             return 0;
         }
-        public float ComandoAtaque()
+        public int ComandoAtaque()
         {
-            if(Input.GetKeyDown(KeyCode.J)) return 12f;
+            if(Input.GetKeyDown(KeyCode.J)) return 12;
             return 0;
         }
 

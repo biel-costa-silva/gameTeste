@@ -12,8 +12,6 @@ namespace Assets.Scripts.Visual.Animacoes.Personagens
 {
     public class AnimGuerreiro : ControladorAnim
     {
-        
-        [SerializeField]private Personagem personagem;      
 
 
         // ----------------  Métodos de acionamento ------------------
@@ -80,10 +78,7 @@ namespace Assets.Scripts.Visual.Animacoes.Personagens
        
         // EVENTOS ESPECIFICOS DO GUERREIRO!! --------------------------------------------------
       
-        public void EventoAtaque()//frame do ataque
-        {
-            personagem.AplicarGolpe();
-        }
+        
 
     }
 }
