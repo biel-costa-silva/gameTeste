@@ -15,7 +15,7 @@ namespace Assets.Scripts.Personagens.Arqueiro
         }
         public int ComandoAtaque()
         {
-            if(Input.GetKeyDown(KeyCode.Mouse0)) return 10;
+            if(Input.GetKeyDown(KeyCode.Mouse0)) return 1;
             return 0;
         }
        

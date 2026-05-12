@@ -73,31 +73,21 @@ public abstract class Personagem : MonoBehaviour
     }
 
     //--------------------------------------------------------------------------------
-    public virtual void Atacar(float forca)
+    public virtual void Atacar(int forca)
     {
-        float direcao = 1f;
-        if (sprite.flipX) direcao = -1f;
-        else direcao = 1f;
+        float direcao = sprite.flipX ? -1f : 1f;
+        rb.AddForce(new Vector2(direcao * (forca + 8) * 2, 0), ForceMode2D.Impulse);//impulso do ataque  
     }
 
     public void AplicarGolpe(int indice)
-    {   
-        Vector3 offsetLocal = transform.InverseTransformPoint(pontoDoAtaque.position);
+    {
+        GameObject atk = Instantiate(ataques[indice], pontoDoAtaque.position, pontoDoAtaque.rotation);
 
-        Vector3 spawnPos = (Vector2)rb.position + (Vector2)transform.TransformDirection(offsetLocal);
-        Quaternion spawnRot = pontoDoAtaque.rotation;
-
-        float direcao = sprite.flipX ? -1f : 1f;
-
-
-        rb.AddForce(new Vector2(direcao * (indice + 8) * 2, 0), ForceMode2D.Impulse);//impulso do ataque      
-        GameObject atk = Instantiate(ataques[indice], spawnPos, spawnRot);
+        float direcao = sprite.flipX ? -1f : 1f;       
 
         Vector3 scale = atk.transform.localScale;
         scale.x = Mathf.Abs(scale.x) * direcao;
         atk.transform.localScale = scale;
-
-          
 
         BoxCollider2D col = atk.GetComponent<BoxCollider2D>();
 

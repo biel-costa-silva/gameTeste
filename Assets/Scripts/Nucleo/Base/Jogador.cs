@@ -210,12 +210,13 @@ public class Jogador : Personagem
     //
     IEnumerator RotinaAtacando()
     {
-        bool comboRegistrado = false; 
-
+        bool comboRegistrado = false;
+        int forcaAtq = controle.ComandoAtaque();
         int contadorCombo = 0;
         animacao.indiceAtaque = 0;
         
-        animacao.ResetarAnimacao();        
+        animacao.ResetarAnimacao();
+        Atacar(forcaAtq);
         animacao.AnimacaoAtacando();
 
         yield return null;
@@ -249,7 +250,8 @@ public class Jogador : Personagem
                     contadorCombo++;
                     animacao.indiceAtaque = contadorCombo;//muda na classe ControladorAnim.
 
-                    animacao.ResetarAnimacao();                    
+                    animacao.ResetarAnimacao();
+                    Atacar(forcaAtq);
                     animacao.AnimacaoAtacando();
                     yield return null;
                 }
