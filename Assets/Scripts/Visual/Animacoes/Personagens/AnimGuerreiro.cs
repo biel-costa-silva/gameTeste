@@ -19,7 +19,7 @@ namespace Assets.Scripts.Visual.Animacoes.Personagens
         {
             animator.SetBool("isAndando", false);
         }
-        //
+        
         public override void AnimacaoAndando(bool parametro)
         {
             animator.SetBool("isAndando", parametro);
@@ -41,7 +41,7 @@ namespace Assets.Scripts.Visual.Animacoes.Personagens
         {
             animator.SetBool("isAndandoArm", false);
         }
-        //
+        
         public override void AnimacaoAndandoArmado(bool parametro)
         {
             animator.SetBool("isAndandoArm", parametro);
@@ -71,8 +71,13 @@ namespace Assets.Scripts.Visual.Animacoes.Personagens
         }
        
 
+        // ----------------------- Método de animações especificas do guerreiro -------------------- #
 
-        // ----------------------- Método de controle de tempo de animação -------------------- #
+        public void AnimacaoDefendo()
+        {
+            animacaoTerminou = false;
+            animator.SetTrigger("defender");
+        }
         
         // ------------------------------------------------------------------------------------ #
        

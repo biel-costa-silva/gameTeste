@@ -1103,6 +1103,7 @@ MonoBehaviour:
   - {fileID: 5688417427016420097, guid: 4fcb48170241d0741bc4f3af258af404, type: 3}
   - {fileID: 3127032226217516755, guid: 59db16ecd2f8bd744a1762c62b309494, type: 3}
   - {fileID: 508356192094315985, guid: ac6566c8616753343aed663624fbc6b7, type: 3}
+  animacao: {fileID: 0}
   cameraController: {fileID: 0}
 --- !u!61 &1289048062 stripped
 BoxCollider2D:
@@ -1392,6 +1393,7 @@ MonoBehaviour:
   boxCollider: {fileID: 1580722398}
   pontoDoAtaque: {fileID: 2076201250}
   ataques: []
+  animacao: {fileID: 0}
   cameraController: {fileID: 0}
 --- !u!114 &1580722387
 MonoBehaviour:

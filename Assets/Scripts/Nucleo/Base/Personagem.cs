@@ -12,14 +12,14 @@ public abstract class Personagem : MonoBehaviour
 {
     //variaveis componentes (do unity)------------
     protected Rigidbody2D rb;
-    protected SpriteRenderer sprite;
-    protected ControladorAnim animacao;
+    protected SpriteRenderer sprite;   
     public BoxCollider2D boxCollider;
     [SerializeField] private Transform pontoDoAtaque;
 
     //variaveis objetos/classes    
     [SerializeField] private GameObject[] ataques;
-    protected IComandosGerais controle;
+    [SerializeField] protected IComandosGerais controle;
+    [SerializeField] protected ControladorAnim animacao;
 
     //variaveis de controle
     protected bool sofreuDano;
@@ -43,9 +43,9 @@ public abstract class Personagem : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         if (sprite == null) sprite = gameObject.AddComponent<SpriteRenderer>();
 
-        animacao = GetComponent<ControladorAnim>(); // procura componente que herda ControleAnim        
-
+        animacao = GetComponent<ControladorAnim>(); // procura componente que herda ControleAnim     
         controle = GetComponent<IComandosGerais>(); // procura componente que implementa IComandosGerais      
+        
     }
 
     //Métodos de correcao/sincronizacao - [Sprite - BoxCollider]
@@ -110,12 +110,12 @@ public abstract class Personagem : MonoBehaviour
     {
         sofreuDano = true;
 
-        rb.AddForce(new Vector2(golpe.direcao * golpe.dano * 10, 0), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(golpe.direcao * golpe.dano * 12, 0), ForceMode2D.Impulse);
         if (golpe.direcao > 0) sprite.flipX = true;
         else sprite.flipX = false;
 
-        vida -= dano;
-        Debug.Log("Sofreu: " + dano + " vida atual: " + vida);
+        vida -= golpe.dano;
+        Debug.Log("Sofreu: " + golpe.dano + " vida atual: " + vida);
 
     }
 

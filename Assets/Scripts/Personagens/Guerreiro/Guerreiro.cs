@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.Visual.Animacoes.Personagens;
+﻿using Assets.Scripts.Nucleo.Interfaces;
+using Assets.Scripts.Visoes.Animacoes;
+using Assets.Scripts.Visual.Animacoes.Personagens;
 using System.Collections;
 using UnityEngine;
 
@@ -8,17 +10,15 @@ namespace Assets.Scripts.Personagens.Guerreiro
 	{
         private void Awake()
         {
-            //força a adição dos componentes controlesGuerreiro e AnimGuerreiro no gameObject
+            //ControladorAnim e IComandosGerais
+			if(GetComponent<AnimGuerreiro>() == null) gameObject.AddComponent<AnimGuerreiro>();
+            if (GetComponent<ComandosGuerreiro>() == null) gameObject.AddComponent<ComandosGuerreiro>();          
             base.Awake();
 
-			if (controle == null)
-			{
-				controle = gameObject.AddComponent<ComandosGuerreiro>();
-			}
-            if (animacao == null)
-            {
-                animacao = gameObject.AddComponent<AnimGuerreiro>();
-            }
+			//forca a buscar de forma especifica -> ComandosGuerreiro e AnimGuerreiro
+
+			
+            
         }
         void Start()
 		{
@@ -34,7 +34,6 @@ namespace Assets.Scripts.Personagens.Guerreiro
         void Update()
 		{
 			base.Update();		
-
 		}
 
 
