@@ -12,7 +12,6 @@ namespace Assets.Scripts.Visoes.Animacoes
         public bool animacaoTerminou = false;
         public bool novoAtaque = true;
         public int indiceAtaque { get; set; }
-        public bool ComboRegistrado { get; set; }
         void Awake()
         {
             animator = GetComponent<Animator>();

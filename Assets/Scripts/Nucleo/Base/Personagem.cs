@@ -17,19 +17,15 @@ public abstract class Personagem : MonoBehaviour
     public BoxCollider2D boxCollider;
     [SerializeField] private Transform pontoDoAtaque;
 
-
-    //variaveis objetos    
-    [SerializeField] private GameObject []ataques;
-
-
+    //variaveis objetos/classes    
+    [SerializeField] private GameObject[] ataques;
     protected IComandosGerais controle;
 
     //variaveis de controle
     protected bool sofreuDano;
-    float offsetXBase;
+    protected float offsetXBase;
 
-
-    //variaveis da classe
+    //atributos da classe
     protected string nome { get; set; }
     protected int vida { get; set; }
     protected int dano { get; set; }
@@ -42,39 +38,30 @@ public abstract class Personagem : MonoBehaviour
         offsetXBase = -0.01f;
 
         rb = GetComponent<Rigidbody2D>();
-        if (rb == null)
-        {
-            rb = gameObject.AddComponent<Rigidbody2D>();
-        }
+        if (rb == null) rb = gameObject.AddComponent<Rigidbody2D>();
 
         sprite = GetComponent<SpriteRenderer>();
-        if (sprite == null)
-        {
-            sprite = gameObject.AddComponent<SpriteRenderer>();
-        }
+        if (sprite == null) sprite = gameObject.AddComponent<SpriteRenderer>();
 
         animacao = GetComponent<ControladorAnim>(); // procura componente que herda ControleAnim        
 
         controle = GetComponent<IComandosGerais>(); // procura componente que implementa IComandosGerais      
     }
 
-    //Métodos de correcao - Personagem
+    //Métodos de correcao/sincronizacao - [Sprite - BoxCollider]
 
-    //BoxCollider no sprite.flipX por frame --> chamar no método update
+    //Flipar o BoxCollider junto com o Sprite por frame --> chamar no método update
     public void CorrigirColliderFlip()
     {
-        if (sprite.flipX)
-            boxCollider.offset = new Vector2(-offsetXBase, boxCollider.offset.y);
-        else
-            boxCollider.offset = new Vector2(offsetXBase, boxCollider.offset.y);
+        if (sprite.flipX) boxCollider.offset = new Vector2(-offsetXBase, boxCollider.offset.y);
+        else boxCollider.offset = new Vector2(offsetXBase, boxCollider.offset.y);
     }
 
-    //BoxCollider no ataque --> chamar no animation event da animação
+    //Mudar BoxCollider em animacoes especificas - chamar poo AnimationEvent
     public void TrocarOffsetX(float novoValor)
     {
         offsetXBase = novoValor;
     }
-
 
     //Métodos da classe - Personagem
     public virtual void Andar(float direcao)
@@ -83,50 +70,38 @@ public abstract class Personagem : MonoBehaviour
         if (direcao > 0) sprite.flipX = false;
 
         if (direcao < 0) sprite.flipX = true;
-
     }
-
 
     //--------------------------------------------------------------------------------
     public virtual void Atacar(float forca)
     {
         float direcao = 1f;
         if (sprite.flipX) direcao = -1f;
-        if (!sprite.flipX) direcao = 1f;
-
-        rb.AddForce(new Vector2(direcao * forca * 2, 0), ForceMode2D.Impulse);//impulso do ataque
-
+        else direcao = 1f;
     }
 
-
     public void AplicarGolpe(int indice)
-    {
-        Physics2D.SyncTransforms(); // força a sincronização do rigidbody com o transform.
+    {   
+        Vector3 offsetLocal = transform.InverseTransformPoint(pontoDoAtaque.position);
 
-        GameObject atk = Instantiate(ataques[indice], pontoDoAtaque.position, pontoDoAtaque.rotation);
+        Vector3 spawnPos = (Vector2)rb.position + (Vector2)transform.TransformDirection(offsetLocal);
+        Quaternion spawnRot = pontoDoAtaque.rotation;
+
+        float direcao = sprite.flipX ? -1f : 1f;
+
+
+        rb.AddForce(new Vector2(direcao * (indice + 8) * 2, 0), ForceMode2D.Impulse);//impulso do ataque      
+        GameObject atk = Instantiate(ataques[indice], spawnPos, spawnRot);
+
         Vector3 scale = atk.transform.localScale;
-
-        float direcao;
-
-        // verifica direção do personagem
-        if (sprite.flipX)
-        {
-            scale.x = -Mathf.Abs(scale.x);
-            direcao = -1f;
-        }
-        else
-        {
-            scale.x = Mathf.Abs(scale.x);
-            direcao = 1f;
-        }
-
+        scale.x = Mathf.Abs(scale.x) * direcao;
         atk.transform.localScale = scale;
 
+          
+
         BoxCollider2D col = atk.GetComponent<BoxCollider2D>();
-        if (col != null)
-        {
-            col.offset = new Vector2(Mathf.Abs(col.offset.x) * direcao, col.offset.y);
-        }
+
+        if (col != null) col.offset = new Vector2(Mathf.Abs(col.offset.x) * direcao, col.offset.y);
 
         VFXController vfx = atk.GetComponent<VFXController>();
         vfx.origem = this;
@@ -162,7 +137,7 @@ public abstract class Personagem : MonoBehaviour
 
 
 
-    
+
     private void LateUpdate()// -------------------------------------------------------------------------------- 3
     {
         CorrigirColliderFlip();

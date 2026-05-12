@@ -210,14 +210,12 @@ public class Jogador : Personagem
     //
     IEnumerator RotinaAtacando()
     {
-        bool comboRegistrado = false;
-        
+        bool comboRegistrado = false; 
 
         int contadorCombo = 0;
         animacao.indiceAtaque = 0;
         
-        animacao.ResetarAnimacao();
-        Atacar(controle.ComandoAtaque());
+        animacao.ResetarAnimacao();        
         animacao.AnimacaoAtacando();
 
         yield return null;
@@ -249,10 +247,9 @@ public class Jogador : Personagem
                     comboRegistrado = false;
                     
                     contadorCombo++;
-                    animacao.indiceAtaque = contadorCombo;
+                    animacao.indiceAtaque = contadorCombo;//muda na classe ControladorAnim.
 
-                    animacao.ResetarAnimacao();
-                    Atacar(dano);
+                    animacao.ResetarAnimacao();                    
                     animacao.AnimacaoAtacando();
                     yield return null;
                 }
@@ -262,6 +259,7 @@ public class Jogador : Personagem
                 }
             }
         }      
+
         yield return StartCoroutine(animacao.EsperarAnimacao()); // aguarda o último frame
         estadoAtual = EstadoJogador.ModoAtaque;
     }
