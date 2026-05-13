@@ -72,7 +72,7 @@ namespace Assets.Scripts.Jogabilidade.Mundo
             if (podeDarDano && alvoGuardado != null)
             {
                 jaResolveu = true;
-                alvoGuardado.SofrerDano(this);
+                alvoGuardado.SofrerAtaque(this);// !!!
                 Resetar();
             }
         }

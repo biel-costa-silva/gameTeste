@@ -7,27 +7,26 @@ namespace Assets.Scripts.Personagens.Arqueiro
 {
 	public class Arqueiro : Jogador
 	{
+        private AnimArqueiro animacaoArqueiro;
+        private ComandosArqueiro controleArqueiro;
         private void Awake()
         {
             //força a adição dos componentes comandosArqueiro e AnimArqueiro no gameObject
             base.Awake();
+            animacaoArqueiro = animacao as AnimArqueiro;
+            controleArqueiro = controle as ComandosArqueiro;
 
-            if (controle == null)
-            {
-                controle = gameObject.AddComponent<ComandosArqueiro>();
-            }
-            if (animacao == null)
-            {
-                animacao = gameObject.AddComponent<AnimArqueiro>();
-            }
         }
         void Start()
 		{
+            estadoAtual = base.estadoAtual;
+
             nome = "Arqueiro";
             vida = 4;
             dano = 3;
             defesa = 0; // quando acionada aumenta para a quantidade do nivel atual
             velocidade = 5; // muda se estiver em modo de ataque 
+            velocidadeBase = velocidade;
         }
 
 

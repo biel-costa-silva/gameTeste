@@ -6,6 +6,6 @@ namespace Assets.Scripts.Nucleo.Interfaces
 {
     public interface IHabilidade
     {
-        void UsarHabilidade();
+        public bool Defender();
     }
 }

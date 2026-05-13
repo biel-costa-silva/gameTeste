@@ -40,6 +40,9 @@ namespace Assets.Scripts.Visoes.Animacoes
         public abstract void AnimacaoSofrendoAtqArm();
         public abstract void AnimacaoSofrendoAtqDesarm();
 
+
+
+
         //EVENTOS NO ANIMATION EVENTS
         
         // Animation Event no último frame

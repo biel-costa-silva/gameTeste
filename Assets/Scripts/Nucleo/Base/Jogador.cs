@@ -29,13 +29,14 @@ public class Jogador : Personagem
 
         if (estadoAtual == EstadoJogador.Parado)
         {
+            velocidade = velocidadeBase;            
             animacao.AnimacaoParado();// looping fixo, sem inputs 
 
-            if (sofreuDano)
+            if (sofreuAtaque)
             {
                 estadoAtual = EstadoJogador.Ocupado;
                 StartCoroutine(RotinaSofrendoAtaqueDesarm());
-                sofreuDano = false;
+                sofreuAtaque = false;
                 return;
             }
 
@@ -73,17 +74,17 @@ public class Jogador : Personagem
         // ------------------------------ POSSIBILIDADES ENQUANTO ANDANDO ------------------------------ //
         if (estadoAtual == EstadoJogador.Andando)
         {
-            if (sofreuDano)
+            if (sofreuAtaque)
             {
                 estadoAtual = EstadoJogador.Ocupado;
                 StartCoroutine(RotinaSofrendoAtaqueDesarm());
-                sofreuDano = false;
+                sofreuAtaque = false;
                 return;
             }
 
             if (controle.ComandoMovimento() != 0)
             {
-                Andar(controle.ComandoMovimento());
+                Locomover(controle.ComandoMovimento());
                 animacao.AnimacaoAndando(estadoAtual == EstadoJogador.Andando);//looping dinâmico, necessário mesclar animator com Estado real do jogador     
             }
             else
@@ -104,13 +105,14 @@ public class Jogador : Personagem
         // ------------------------ POSSIBILIDADES ENQUANTO EM MODO DE ATAQUE -------------------------- //
         if (estadoAtual == EstadoJogador.ModoAtaque)
         {
+            velocidade = velocidadeBase + 2;
             animacao.AnimacaoParadoArmado();
 
-            if (sofreuDano)
+            if (sofreuAtaque)
             {
                 estadoAtual = EstadoJogador.Ocupado;
                 StartCoroutine(RotinaSofrendoAtaqueArm());
-                sofreuDano = false;
+                sofreuAtaque = false;
                 return;
             }
 
@@ -137,20 +139,20 @@ public class Jogador : Personagem
         }
         // --------------------------------------------------------------------------------------------- //
 
-        // ----------------------- POSSIBILIDADES ENQUANTO ANDA EM MODO DE ATAQUE ---------------------- //
+        // ----------------------- POSSIBILIDADES ENQUANTO CORRE EM MODO DE ATAQUE ---------------------- //
         if (estadoAtual == EstadoJogador.AndandoArmado)
         {
-            if (sofreuDano)
+            if (sofreuAtaque)
             {
                 estadoAtual = EstadoJogador.Ocupado;
                 StartCoroutine(RotinaSofrendoAtaqueArm());
-                sofreuDano = false;
+                sofreuAtaque = false;
                 return;
             }
 
             if (controle.ComandoMovimento() != 0)
             {
-                Andar(controle.ComandoMovimento());
+                Locomover(controle.ComandoMovimento());
                 animacao.AnimacaoAndandoArmado(estadoAtual == EstadoJogador.AndandoArmado);
             }
             else
@@ -176,7 +178,7 @@ public class Jogador : Personagem
         // --------------------------------------------------------------------------------------------- //
 
 
-    }
+    }   
 
 
 
@@ -233,9 +235,9 @@ public class Jogador : Personagem
                 }
 
                 //pode sofrer dano durante o ataque (quem acerta outro antes)
-                if (sofreuDano)
+                if (sofreuAtaque)
                 {
-                    sofreuDano = false;
+                    sofreuAtaque = false;
                     yield return StartCoroutine(RotinaSofrendoAtaqueArm());
                     yield break;//quebra combo
                 }

@@ -7,7 +7,7 @@ namespace Assets.Scripts.Personagens.Guerreiro
 {
 	public class ComandosGuerreiro : MonoBehaviour, IComandosGerais, IHabilidade
 	{
-        //controle do guerreiro
+        //controles gerais da interface
         public float ComandoMovimento()
         {            
             if (Input.GetKey(KeyCode.A)) return -1f;
@@ -19,21 +19,19 @@ namespace Assets.Scripts.Personagens.Guerreiro
             if(Input.GetKeyDown(KeyCode.J)) return 1;
             return 0;
         }
-
         public bool ComandoInteracao()
         {
             if (Input.GetKeyDown(KeyCode.E)) return true;
             return false;
         }
-
-        public void UsarHabilidade()
-        {
-            if (Input.GetKey(KeyCode.S));
-
-        }
         public bool ComandoSaqueArma()
         {
             if (Input.GetKeyDown(KeyCode.Q)) return true;
+            return false;
+        }
+        public bool Defender()
+        {
+            if (Input.GetKeyDown(KeyCode.L)) return true;
             return false;
         }
     }

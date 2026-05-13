@@ -22,7 +22,7 @@ public abstract class Personagem : MonoBehaviour
     [SerializeField] protected ControladorAnim animacao;
 
     //variaveis de controle
-    protected bool sofreuDano;
+    protected bool sofreuAtaque;
     protected float offsetXBase;
 
     //atributos da classe
@@ -31,6 +31,7 @@ public abstract class Personagem : MonoBehaviour
     protected int dano { get; set; }
     protected int defesa { get; set; }
     protected float velocidade { get; set; }
+    protected float velocidadeBase { get; set; }
 
     //Métodos de fluxo da unity
     public void Awake() // -------------------------------------------------------------------------------- 0
@@ -64,12 +65,11 @@ public abstract class Personagem : MonoBehaviour
     }
 
     //Métodos da classe - Personagem
-    public virtual void Andar(float direcao)
+    public virtual void Locomover(float direcao)
     {
         rb.linearVelocity = new Vector2(direcao * velocidade, rb.linearVelocity.y);
-        if (direcao > 0) sprite.flipX = false;
-
         if (direcao < 0) sprite.flipX = true;
+        else sprite.flipX = false;
     }
 
     //--------------------------------------------------------------------------------
@@ -106,9 +106,9 @@ public abstract class Personagem : MonoBehaviour
     //-------------------------------------------------------------------------------    
 
 
-    public virtual void SofrerDano(HitBox golpe) //Se "is Trigger" (componente Collider) acontece, retorne true e faça;
+    public virtual void SofrerAtaque(HitBox golpe) //Se "is Trigger" (componente Collider) acontece, retorne true e faça;
     {
-        sofreuDano = true;
+        sofreuAtaque = true;
 
         rb.AddForce(new Vector2(golpe.direcao * golpe.dano * 12, 0), ForceMode2D.Impulse);
         if (golpe.direcao > 0) sprite.flipX = true;

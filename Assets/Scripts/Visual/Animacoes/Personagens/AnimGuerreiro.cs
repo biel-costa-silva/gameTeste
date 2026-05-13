@@ -19,7 +19,7 @@ namespace Assets.Scripts.Visual.Animacoes.Personagens
         {
             animator.SetBool("isAndando", false);
         }
-        
+
         public override void AnimacaoAndando(bool parametro)
         {
             animator.SetBool("isAndando", parametro);
@@ -41,7 +41,7 @@ namespace Assets.Scripts.Visual.Animacoes.Personagens
         {
             animator.SetBool("isAndandoArm", false);
         }
-        
+
         public override void AnimacaoAndandoArmado(bool parametro)
         {
             animator.SetBool("isAndandoArm", parametro);
@@ -69,7 +69,7 @@ namespace Assets.Scripts.Visual.Animacoes.Personagens
             animacaoTerminou = false;
             animator.SetTrigger("sofrerAtqDesarm");
         }
-       
+
 
         // ----------------------- Método de animações especificas do guerreiro -------------------- #
 
@@ -78,12 +78,21 @@ namespace Assets.Scripts.Visual.Animacoes.Personagens
             animacaoTerminou = false;
             animator.SetTrigger("defender");
         }
-        
+
         // ------------------------------------------------------------------------------------ #
-       
+
         // EVENTOS ESPECIFICOS DO GUERREIRO!! --------------------------------------------------
-      
-        
+
+        public void EventoRespulsao()
+        {
+            //chamar no frame especifico caso sofra dano 
+        }
+        public void EventoDefesa()
+        {
+
+        }
+
+
 
     }
 }
