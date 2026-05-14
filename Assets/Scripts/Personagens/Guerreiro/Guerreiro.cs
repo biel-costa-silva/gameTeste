@@ -113,14 +113,18 @@ namespace Assets.Scripts.Personagens.Guerreiro
 
         public override void SofrerAtaque(HitBox golpe)
         {
+            sofreuAtaque = true;
+
             if (animacaoGuerreiro.estaRepelindo)
             {
                 Destroy(golpe.gameObject);
+                Debug.Log("Repeliu: ataque inimigo cancelado");
                 //mudanças futuras
             }
             else if (animacaoGuerreiro.estaDefendendo)
             {
                 golpe.dano -= defesa;
+                Debug.Log("Defendeu");
                 base.SofrerAtaque(golpe);
             }
             else
