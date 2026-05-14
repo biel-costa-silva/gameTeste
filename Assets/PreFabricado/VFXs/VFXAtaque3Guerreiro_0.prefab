@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 9205325758573720411}
   - component: {fileID: 4804227960168798821}
   - component: {fileID: 1607861187090673508}
-  - component: {fileID: 1676740544934137086}
   - component: {fileID: 4921374137408716026}
   m_Layer: 0
   m_Name: VFXAtaque3Guerreiro_0
@@ -191,20 +190,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1676740544934137086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 508356192094315985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 412a0eeeff08b8a4db90f39e449b947b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Animacoes.VFXs.VFXController
-  origem: {fileID: 0}
-  jaResolveu: 0
 --- !u!114 &4921374137408716026
 MonoBehaviour:
   m_ObjectHideFlags: 0

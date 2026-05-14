@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Animacoes.VFXs;
-using Assets.Scripts.Nucleo.Interfaces;
+﻿using Assets.Scripts.Nucleo.Interfaces;
 using UnityEngine;
 
 namespace Assets.Scripts.Jogabilidade.Mundo
@@ -7,13 +6,14 @@ namespace Assets.Scripts.Jogabilidade.Mundo
     public class HitBox : MonoBehaviour, ICausamDano
     {
         public Personagem origem;
+        Personagem alvoGuardado;
         private BoxCollider2D boxColl;
 
         //variaveis de controle       
         bool jaResolveu;
         bool podeDarDano = false;
         bool detectouAtaque = false;
-        Personagem alvoGuardado;
+       
 
         //variaveis de jogabilidade
         public int dano { get; set; }
@@ -26,15 +26,15 @@ namespace Assets.Scripts.Jogabilidade.Mundo
             boxColl.enabled = false;
         }
 
-        public void Inicializar(Personagem dono)
+        public void Inicializar(Personagem dono, int dano, float direcao)
         {
             origem = dono;
-
-            Collider2D meu = GetComponent<Collider2D>();
+            this.dano = dano;
+            this.direcao = direcao;
 
             foreach (Collider2D col in origem.GetComponentsInChildren<Collider2D>())
             {
-                Physics2D.IgnoreCollision(meu, col);
+                Physics2D.IgnoreCollision(boxColl, col);
             }
         }
 
@@ -43,14 +43,13 @@ namespace Assets.Scripts.Jogabilidade.Mundo
         {
             if (!boxColl.enabled) return;
 
-            VFXController vfx = other.GetComponentInParent<VFXController>();
+            HitBox outroAtq = other.GetComponentInParent<HitBox>();
             Personagem alvo = other.GetComponentInParent<Personagem>();
 
-            if (vfx != null && vfx.origem != origem)
+            if (outroAtq != null && outroAtq.origem != origem)
             {
                 detectouAtaque = true;
             }
-
             if (alvo != null && alvo != origem)
             {
                 podeDarDano = true;
@@ -73,7 +72,7 @@ namespace Assets.Scripts.Jogabilidade.Mundo
             {
                 jaResolveu = true;
                 alvoGuardado.SofrerAtaque(this);// !!!
-                Resetar();
+                Resetar();                
             }
         }
 
@@ -101,6 +100,13 @@ namespace Assets.Scripts.Jogabilidade.Mundo
 
             Destroy(gameObject);
             //mudar para choque entre ataques 
+        }
+
+
+        //EVENTOS
+        public void DestroirObj()
+        {
+            Destroy(gameObject);
         }
     }
 }

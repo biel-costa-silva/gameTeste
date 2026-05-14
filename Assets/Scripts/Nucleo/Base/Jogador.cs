@@ -226,7 +226,7 @@ public class Jogador : Personagem
         
         while (true)
         {
-            if (animacao.novoAtaque)//lendo inputs para combo
+            if (animacao.novoAtaque)//janela aberta
             {
                 if (contadorCombo <= 2 && controle.ComandoAtaque() > 0)//dano igual 0 significa que não atacou
                 {
@@ -239,11 +239,11 @@ public class Jogador : Personagem
                 {
                     sofreuAtaque = false;
                     yield return StartCoroutine(RotinaSofrendoAtaqueArm());
-                    yield break;//quebra combo
+                    yield break;
                 }
                 yield return null;
             }
-            else//nao le mais inputs para combo
+            else//janela fechada
             {
                 if (comboRegistrado)
                 {

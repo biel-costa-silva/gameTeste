@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Animacoes.VFXs;
-using Assets.Scripts.Entidades.Enums;
+﻿using Assets.Scripts.Entidades.Enums;
 using Assets.Scripts.Jogabilidade.Mundo;
 using Assets.Scripts.Nucleo.Interfaces;
 using Assets.Scripts.Visoes.Animacoes;
@@ -79,6 +78,7 @@ public abstract class Personagem : MonoBehaviour
         rb.AddForce(new Vector2(direcao * (forca + 8) * 2, 0), ForceMode2D.Impulse);//impulso do ataque  
     }
 
+
     public void AplicarGolpe(int indice)
     {
         GameObject atk = Instantiate(ataques[indice], pontoDoAtaque.position, pontoDoAtaque.rotation);
@@ -89,17 +89,8 @@ public abstract class Personagem : MonoBehaviour
         scale.x = Mathf.Abs(scale.x) * direcao;
         atk.transform.localScale = scale;
 
-        BoxCollider2D col = atk.GetComponent<BoxCollider2D>();
-
-        if (col != null) col.offset = new Vector2(Mathf.Abs(col.offset.x) * direcao, col.offset.y);
-
-        VFXController vfx = atk.GetComponent<VFXController>();
-        vfx.origem = this;
-
-        HitBox hitbox = atk.GetComponent<HitBox>();
-        hitbox.dano = this.dano;
-        hitbox.direcao = direcao;
-        hitbox.Inicializar(this);
+        HitBox hitbox = atk.GetComponent<HitBox>();        
+        hitbox.Inicializar(this, dano, direcao);
 
         Debug.Log("Aplicou: " + hitbox.dano + " de dano");
     }

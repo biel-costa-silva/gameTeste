@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6320487882297047034}
   - component: {fileID: 182831397068786562}
   - component: {fileID: -4162755869848621190}
-  - component: {fileID: 6487011980945283098}
   - component: {fileID: 778464220967622538}
   m_Layer: 0
   m_Name: VFXAtaque1Guerreiro_0
@@ -191,20 +190,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.12855518, y: 0.23836899}
   m_EdgeRadius: 0
---- !u!114 &6487011980945283098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5688417427016420097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 412a0eeeff08b8a4db90f39e449b947b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Animacoes.VFXs.VFXController
-  origem: {fileID: 0}
-  jaResolveu: 0
 --- !u!114 &778464220967622538
 MonoBehaviour:
   m_ObjectHideFlags: 0
