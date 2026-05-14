@@ -254,7 +254,28 @@ AnimationClip:
     functionName: TrocarOffsetX
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0.01
+    floatParameter: 0.03
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.16666667
+    functionName: EventoRepelir
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.33333334
+    functionName: EventoDefesa
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.6666667
+    functionName: FimDefesa
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.75

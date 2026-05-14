@@ -13,6 +13,9 @@ namespace Assets.Scripts.Visual.Animacoes.Personagens
     public class AnimGuerreiro : ControladorAnim
     {
 
+        //variaveis de controle
+        public bool estaDefendendo = false;
+        public bool estaRepelindo = false;
 
         // ----------------  Métodos de acionamento ------------------
         public override void AnimacaoParado()
@@ -68,8 +71,7 @@ namespace Assets.Scripts.Visual.Animacoes.Personagens
         {
             animacaoTerminou = false;
             animator.SetTrigger("sofrerAtqDesarm");
-        }
-
+        }        
 
         // ----------------------- Método de animações especificas do guerreiro -------------------- #
 
@@ -78,21 +80,34 @@ namespace Assets.Scripts.Visual.Animacoes.Personagens
             animacaoTerminou = false;
             animator.SetTrigger("defender");
         }
+        public void AnimacaoSofrendoAtqDef()
+        {
+            animacaoTerminou = false;
+            animator.SetTrigger("sofrerAtqDefendendo");
+        }
+        public void AnimacaoRepelindo()
+        {
+            animacaoTerminou = false;
+            animator.SetTrigger("repelir");
+        }
 
         // ------------------------------------------------------------------------------------ #
 
         // EVENTOS ESPECIFICOS DO GUERREIRO!! --------------------------------------------------
 
-        public void EventoRespulsao()
+        public void EventoRepelir()
         {
-            //chamar no frame especifico caso sofra dano 
+            estaRepelindo = true;
         }
         public void EventoDefesa()
         {
-
+            estaRepelindo = false;
+            estaDefendendo = true;
         }
-
-
+        public void FimDefesa()
+        {
+            estaDefendendo = false;
+        }
 
     }
 }

@@ -1073,6 +1073,8 @@ MonoBehaviour:
   personagem: {fileID: 1289048060}
   animacaoTerminou: 0
   novoAtaque: 0
+  estaDefendendo: 0
+  estaRepelindo: 0
 --- !u!114 &1289048059
 MonoBehaviour:
   m_ObjectHideFlags: 0

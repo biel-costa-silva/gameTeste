@@ -22,7 +22,7 @@ public abstract class Personagem : MonoBehaviour
 
     //variaveis de controle
     protected bool sofreuAtaque;
-    protected float offsetXBase;
+    protected float offsetXBase;    
 
     //atributos da classe
     protected string nome { get; set; }
