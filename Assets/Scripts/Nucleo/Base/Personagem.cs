@@ -13,7 +13,8 @@ public abstract class Personagem : MonoBehaviour
     protected Rigidbody2D rb;
     protected SpriteRenderer sprite;   
     public BoxCollider2D boxCollider;
-    [SerializeField] private Transform pontoDoAtaque;
+    [SerializeField] protected Transform posicaoPersonagem;
+    
 
     //variaveis objetos/classes    
     [SerializeField] private GameObject[] ataques;
@@ -32,7 +33,7 @@ public abstract class Personagem : MonoBehaviour
     protected float velocidade { get; set; }
     protected float velocidadeBase { get; set; }
 
-    //Métodos de fluxo da unity
+    
     public void Awake() // -------------------------------------------------------------------------------- 0
     {
         offsetXBase = -0.01f;
@@ -48,8 +49,8 @@ public abstract class Personagem : MonoBehaviour
         
     }
 
-    //Métodos de correcao/sincronizacao - [Sprite - BoxCollider]
 
+    //Métodos de correcao/sincronizacao - [Sprite - BoxCollider]
     //Flipar o BoxCollider junto com o Sprite por frame --> chamar no método update
     public void CorrigirColliderFlip()
     {
@@ -57,7 +58,7 @@ public abstract class Personagem : MonoBehaviour
         else boxCollider.offset = new Vector2(offsetXBase, boxCollider.offset.y);
     }
 
-    //Mudar BoxCollider em animacoes especificas - chamar poo AnimationEvent
+    //Mudar BoxCollider em animacoes especificas - chamar por AnimationEvent
     public void TrocarOffsetX(float novoValor)
     {
         offsetXBase = novoValor;
@@ -81,7 +82,7 @@ public abstract class Personagem : MonoBehaviour
 
     public void AplicarGolpe(int indice)
     {
-        GameObject atk = Instantiate(ataques[indice], pontoDoAtaque.position, pontoDoAtaque.rotation);
+        GameObject atk = Instantiate(ataques[indice], posicaoPersonagem.position, posicaoPersonagem.rotation);
 
         float direcao = sprite.flipX ? -1f : 1f;       
 

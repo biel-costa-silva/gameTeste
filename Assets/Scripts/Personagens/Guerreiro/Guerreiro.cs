@@ -12,6 +12,8 @@ namespace Assets.Scripts.Personagens.Guerreiro
     {
         private AnimGuerreiro animacaoGuerreiro;
         private ComandosGuerreiro controleGuerreiro;
+        [SerializeField] private GameObject[] prefabsVFX;
+        [SerializeField] private Transform posicaoGuerreiro;
 
 
         private void Awake()
@@ -27,16 +29,15 @@ namespace Assets.Scripts.Personagens.Guerreiro
         {
             estadoAtual = base.estadoAtual;
 
+
             nome = "Guerreiro";
             vida = 6;
             dano = 2;
-            defesa = 2; // quando acionada aumenta para a quantidade do nivel atual
-            velocidade = 5;// muda se estiver em modo de ataque 
+            defesa = 2;
+            velocidade = 5;
             velocidadeBase = velocidade;
         }
-
-        // precisa chamar o funcionamento base.Update da classe jogador.
-        // precisa existir para implementar funcinalidade especifica da classe.
+       
         void Update()
         {
             base.Update();
@@ -62,9 +63,11 @@ namespace Assets.Scripts.Personagens.Guerreiro
 
         }
 
+
+
         IEnumerator RotinaDefendendo()
         {
-            animacaoGuerreiro.AnimacaoDefendo();
+            animacaoGuerreiro.AnimacaoDefendendo();
 
             while (!animacaoGuerreiro.animacaoTerminou)
             {
@@ -109,23 +112,33 @@ namespace Assets.Scripts.Personagens.Guerreiro
             //animação
         }
 
-
-
         public override void SofrerAtaque(HitBox golpe)
         {
-            sofreuAtaque = true;
-
             if (animacaoGuerreiro.estaRepelindo)
             {
                 Destroy(golpe.gameObject);
-                Debug.Log("Repeliu: ataque inimigo cancelado");
+                Debug.Log("Repeliu");
+
+                GameObject VFXrepelir = Instantiate(prefabsVFX[0], posicaoGuerreiro.position, posicaoGuerreiro.rotation);
+                float direcao = sprite.flipX ? -1f : 1f;
+
+                Vector3 scale = VFXrepelir.transform.localScale;
+                scale.x = Mathf.Abs(scale.x) * direcao;
+                VFXrepelir.transform.localScale = scale;
                 //mudanças futuras
             }
             else if (animacaoGuerreiro.estaDefendendo)
             {
                 golpe.dano -= defesa;
+                base.SofrerAtaque(golpe);               
                 Debug.Log("Defendeu");
-                base.SofrerAtaque(golpe);
+
+                GameObject VFXdefesa = Instantiate(prefabsVFX[1], posicaoGuerreiro.position, posicaoGuerreiro.rotation);
+                float direcao = sprite.flipX ? -1f : 1f;
+
+                Vector3 scale = VFXdefesa.transform.localScale;
+                scale.x = Mathf.Abs(scale.x) * direcao;
+                VFXdefesa.transform.localScale = scale;
             }
             else
             {

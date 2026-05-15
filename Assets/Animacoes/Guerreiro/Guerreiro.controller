@@ -683,7 +683,7 @@ AnimatorStateTransition:
   m_CanTransitionToSelf: 1
 --- !u!1107 &-681073490415982149
 AnimatorStateMachine:
-  serializedVersion: 7
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -737,7 +737,7 @@ AnimatorStateMachine:
     m_Position: {x: 710, y: -420, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3720385867843142311}
-    m_Position: {x: 720, y: -250, z: 0}
+    m_Position: {x: 720, y: -240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2163129507616704808}
     m_Position: {x: 1020, y: 220, z: 0}
@@ -836,7 +836,7 @@ AnimatorController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Guerreiro
-  serializedVersion: 6
+  serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isAndando
     m_Type: 4
@@ -917,7 +917,6 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
-  m_EvaluateTransitionsOnStart: 0
 --- !u!1101 &258695161596173952
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

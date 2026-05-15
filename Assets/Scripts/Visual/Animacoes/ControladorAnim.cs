@@ -12,50 +12,86 @@ namespace Assets.Scripts.Visoes.Animacoes
         public bool animacaoTerminou = false;
         public bool novoAtaque = true;
         public int indiceAtaque { get; set; }
+
+        // Jogadores e inimigos       
         void Awake()
         {
             animator = GetComponent<Animator>();
         }
-        // Jogadores e inimigos
-        public abstract void AnimacaoAndando(bool parametro);
-        public abstract void AnimacaoParado();
-        public abstract void AnimacaoAtacando();
+        public void AnimacaoParado()
+        {
+            animator.SetBool("isAndando", false);
+        }
 
+        public void AnimacaoAndando(bool parametro)
+        {
+            animator.SetBool("isAndando", parametro);
+        }
+        //
+        public void AnimacaoSacandoArma()
+        {
+            animacaoTerminou = false;
+            animator.SetTrigger("sacarArma");
+        }
+        //
+        public void AnimacaoGuardandoArma()
+        {
+            animacaoTerminou = false;
+            animator.SetTrigger("guardarArma");
+        }
+        //
+        public void AnimacaoParadoArmado()
+        {
+            animator.SetBool("isAndandoArm", false);
+        }
+
+        public void AnimacaoAndandoArmado(bool parametro)
+        {
+            animator.SetBool("isAndandoArm", parametro);
+        }
+        //
+        public void AnimacaoInteragindo()
+        {
+            animacaoTerminou = false;
+            animator.SetTrigger("interagir");
+        }
+        //
+        public void AnimacaoAtacando()
+        {
+            animacaoTerminou = false;
+            animator.SetTrigger("atacar");
+        }
+        //
+        public void AnimacaoSofrendoAtqArm()
+        {
+            animacaoTerminou = false;
+            animator.SetTrigger("sofrerAtqArm");
+        }
+        public void AnimacaoSofrendoAtqDesarm()
+        {
+            animacaoTerminou = false;
+            animator.SetTrigger("sofrerAtqDesarm");
+        }
+       
+
+        
+        //Controle de EVENTOS
         public IEnumerator EsperarAnimacao()
         {
             while (!animacaoTerminou) yield return null;            
         }
-        
-        // Jogadores
 
-        public abstract void AnimacaoParadoArmado();
-        public abstract void AnimacaoAndandoArmado(bool parametro);
-
-        public abstract void AnimacaoInteragindo(); // só deve funcionar em campos de interações
-       
-        public abstract void AnimacaoSacandoArma();
-        public abstract void AnimacaoGuardandoArma();
-
-
-        public abstract void AnimacaoSofrendoAtqArm();
-        public abstract void AnimacaoSofrendoAtqDesarm();
-
-
-
-
-        //EVENTOS NO ANIMATION EVENTS
-        
-        // Animation Event no último frame
-        public void OnAnimacaoTerminou() 
-        {
-            animacaoTerminou = true;
-        }
-
-        // Resetar antes de cada animação
         public void ResetarAnimacao()
         {
             animacaoTerminou = false;
             novoAtaque = true;
+        }
+
+
+        // Animation Event no último frame
+        public void OnAnimacaoTerminou() 
+        {
+            animacaoTerminou = true;
         }
 
         //COMBOS!
@@ -64,7 +100,7 @@ namespace Assets.Scripts.Visoes.Animacoes
             novoAtaque = false;         
         }
 
-        //Define ataque e spawna na cena
+        //Define e spawna ataque na cena
         public void EventoAtaque()//frame do ataque
         {
             personagem.AplicarGolpe(indiceAtaque);

@@ -1100,13 +1100,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Personagens.Guerreiro.Guerreiro
   boxCollider: {fileID: 1289048062}
-  pontoDoAtaque: {fileID: 82766153}
+  posicaoPersonagem: {fileID: 82766153}
   ataques:
   - {fileID: 5688417427016420097, guid: 4fcb48170241d0741bc4f3af258af404, type: 3}
   - {fileID: 3127032226217516755, guid: 59db16ecd2f8bd744a1762c62b309494, type: 3}
   - {fileID: 508356192094315985, guid: ac6566c8616753343aed663624fbc6b7, type: 3}
   animacao: {fileID: 0}
   cameraController: {fileID: 0}
+  prefabsVFX:
+  - {fileID: 1796444060775287699, guid: 3a3031ee26cbb624ea99ef06b0a6cffb, type: 3}
+  - {fileID: 8680067936824478869, guid: e13bbcf0a5f800e4a9caa068da1be4f2, type: 3}
+  posicaoGuerreiro: {fileID: 458771439}
 --- !u!61 &1289048062 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 2350678800038056570, guid: e3274234862a1474f8b6b9b8b40b8b9f, type: 3}
@@ -1363,6 +1367,9 @@ PrefabInstance:
       addedObject: {fileID: 2076201250}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 290375056759297450, guid: e3274234862a1474f8b6b9b8b40b8b9f, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1580722396}
+    - targetCorrespondingSourceObject: {fileID: 290375056759297450, guid: e3274234862a1474f8b6b9b8b40b8b9f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1580722382}
     - targetCorrespondingSourceObject: {fileID: 290375056759297450, guid: e3274234862a1474f8b6b9b8b40b8b9f, type: 3}
@@ -1371,9 +1378,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 290375056759297450, guid: e3274234862a1474f8b6b9b8b40b8b9f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1580722391}
-    - targetCorrespondingSourceObject: {fileID: 290375056759297450, guid: e3274234862a1474f8b6b9b8b40b8b9f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1580722396}
   m_SourcePrefab: {fileID: 100100000, guid: e3274234862a1474f8b6b9b8b40b8b9f, type: 3}
 --- !u!4 &1580722381 stripped
 Transform:
@@ -1393,7 +1397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Entidades.Arqueiro
   boxCollider: {fileID: 1580722398}
-  pontoDoAtaque: {fileID: 2076201250}
+  posicaoPersonagem: {fileID: 2076201250}
   ataques:
   - {fileID: 5688417427016420097, guid: 4fcb48170241d0741bc4f3af258af404, type: 3}
   - {fileID: 3127032226217516755, guid: 59db16ecd2f8bd744a1762c62b309494, type: 3}
@@ -1817,7 +1821,7 @@ PrefabInstance:
       addedObject: {fileID: 82766153}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 290375056759297450, guid: e3274234862a1474f8b6b9b8b40b8b9f, type: 3}
-      insertIndex: -1
+      insertIndex: 1
       addedObject: {fileID: 1289048057}
     - targetCorrespondingSourceObject: {fileID: 290375056759297450, guid: e3274234862a1474f8b6b9b8b40b8b9f, type: 3}
       insertIndex: -1
